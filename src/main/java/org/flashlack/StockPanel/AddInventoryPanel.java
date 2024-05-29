@@ -55,7 +55,11 @@ public class AddInventoryPanel extends JPanel {
                     .setStockQuantity(stockQuantityField.getText())
                     .setSupplierName(supplierNameField.getText());
             FoodInventoryImpl foodInventory = new FoodInventoryImpl();
-            foodInventory.foodInventoryUpdate(foodDO);
+            try {
+                foodInventory.foodInventoryUpdate(foodDO);
+            } catch (RuntimeException err){
+                err.printStackTrace();
+            }
         });
         add(finishButton, gbc);
         // 添加返回主菜单按钮
