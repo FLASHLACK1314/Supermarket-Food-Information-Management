@@ -58,6 +58,7 @@ public class AddInventoryPanel extends JPanel {
             try {
                 foodInventory.foodInventoryUpdate(foodDO);
             } catch (RuntimeException err){
+                //TODO 添加文本框提示
                 err.printStackTrace();
             }
         });
