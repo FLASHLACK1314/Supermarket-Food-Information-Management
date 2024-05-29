@@ -1,8 +1,7 @@
 package org.flashlack;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author FLASHLACK
@@ -11,7 +10,6 @@ public class HelpPanel extends JPanel {
 
     public HelpPanel(CardLayout cardLayout, JPanel mainPanel) {
         setLayout(new BorderLayout());
-
         // 创建一个 JTextArea 用于显示文本
         JTextArea textArea = new JTextArea();
         textArea.setText("这是帮助界面的内容。\n");
@@ -30,13 +28,7 @@ public class HelpPanel extends JPanel {
 
         JButton backButton = new JButton("返回主菜单");
         add(backButton, BorderLayout.SOUTH);
-
         // 为返回按钮添加动作监听器，返回主菜单
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Menu");
-            }
-        });
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Menu"));
     }
 }

@@ -1,23 +1,16 @@
 package org.flashlack;
 
-import org.flashlack.mappers.DemoMapper;
-import org.flashlack.mappers.impl.DemoMapperImpl;
+import org.flashlack.StockPanel.AddInventoryPanel;
+import org.flashlack.StockPanel.InventoryPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author FLASHLACK
  */
 public class Main {
     public static void main(String[] args) {
-        DemoMapper demoMapper = new DemoMapperImpl();
-
-        demoMapper.update(555);
-
-
         //创建窗口名称
         JFrame frame = new JFrame("超市食品信息管理系统");
         //获取屏幕尺寸
@@ -63,23 +56,21 @@ public class Main {
         menuPanel.add(containerPanel, BorderLayout.CENTER);
         // 添加主菜单面板到卡片布局
         mainPanel.add(menuPanel, "Menu");
+        //创建库存管理面板
+        InventoryPanel inventoryPanel = new InventoryPanel(cardLayout, mainPanel);
+        mainPanel.add(inventoryPanel, "Inventory");
+        //创建添加库存类
+        AddInventoryPanel addInventoryPanel = new AddInventoryPanel(cardLayout, mainPanel);
+        mainPanel.add(addInventoryPanel, "AddInventory");
         // 创建并添加帮助面板
         HelpPanel helpPanel = new HelpPanel(cardLayout, mainPanel);
         mainPanel.add(helpPanel, "Help");
+        // 为库存管理按钮添加动作监听器，切换到库存管理面板
+        button1.addActionListener(e -> cardLayout.show(mainPanel, "Inventory"));
         // 为帮助按钮添加动作监听器，切换到帮助面板
-        button7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Help");
-            }
-        });
+        button7.addActionListener(e -> cardLayout.show(mainPanel, "Help"));
         // 为退出按钮添加动作监听器，退出程序
-        button8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        button8.addActionListener(e -> System.exit(0));
         // 设置初始显示的面板
         cardLayout.show(mainPanel, "Menu");
         // 将主面板添加到框架

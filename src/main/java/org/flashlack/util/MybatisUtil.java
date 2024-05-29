@@ -7,6 +7,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 
+/**
+ * @author FALSHLACK
+ */
 public class MybatisUtil {
     private static SqlSessionFactory factory;
     static {
