@@ -9,12 +9,12 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class FoodDO {
-    private String foodNumber;
+    private Integer foodNumber;
     private String foodName;
     private String foodCategory;
     private String foodPrice;
     private String stockQuantity;
-    private String supplierName;
+    private Integer supplierNumber;
     @Override
     public String toString() {
         return "FoodDO{" +
@@ -23,7 +23,7 @@ public class FoodDO {
                 ", foodCategory='" + foodCategory + '\'' +
                 ", foodPrice='" + foodPrice + '\'' +
                 ", stockQuantity='" + stockQuantity + '\'' +
-                ", supplierName='" + supplierName + '\'' +
+                ", supplierName='" + supplierNumber + '\'' +
                 '}';
     }
 
@@ -33,6 +33,6 @@ public class FoodDO {
                 "食品类别: " + foodCategory + "\n" +
                 "食品进价: " + foodPrice + "\n" +
                 "库存数量: " + stockQuantity + "\n" +
-                "供应商名称: " + supplierName;
+                "供应商名称: " + supplierNumber;
     }
 }

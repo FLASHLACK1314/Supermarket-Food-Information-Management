@@ -19,8 +19,8 @@ public class QueryInventory extends JPanel {
     private final JTextField foodNameField;
     private final JCheckBox foodCategoryCheckBox;
     private final JTextField foodCategoryField;
-    private final JCheckBox supplierNameCheckBox;
-    private final JTextField supplierNameField;
+    private final JCheckBox supplierNumberCheckBox;
+    private final JTextField supplierNumberField;
     private final JTextArea resultArea;
 
     public QueryInventory(CardLayout cardLayout, JPanel mainPanel) {
@@ -39,12 +39,12 @@ public class QueryInventory extends JPanel {
         foodCategoryCheckBox = new JCheckBox();
         foodCategoryField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, foodCategoryCheckBox, "食品类别:", 2);
 
-        supplierNameCheckBox = new JCheckBox();
-        supplierNameField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNameCheckBox, "供应商名称:", 3);
+        supplierNumberCheckBox = new JCheckBox();
+        supplierNumberField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNumberCheckBox, "供应商名称:", 3);
 
         // 增加字体宽度
         Font font = new Font(null, Font.PLAIN, 15);
-        UIUtils.setFont(font, foodNumberField, foodNameField, foodCategoryField, supplierNameField);
+        UIUtils.setFont(font, foodNumberField, foodNameField, foodCategoryField, supplierNumberField);
 
         // 添加查询按钮
         gbc.gridx = 0;
@@ -58,7 +58,7 @@ public class QueryInventory extends JPanel {
             // 获取选中的复选框对应的文本框值并进行处理
             FoodDO foodDO = new FoodDO();
             if (foodNumberCheckBox.isSelected()) {
-                foodDO.setFoodNumber(foodNumberField.getText());
+                foodDO.setFoodNumber(Integer.valueOf(foodNumberField.getText()));
                 performQuery(foodInventory::foodInventoryFind, foodDO);
             } else if (foodNameCheckBox.isSelected()) {
                 foodDO.setFoodName(foodNameField.getText());
@@ -66,14 +66,31 @@ public class QueryInventory extends JPanel {
             } else if (foodCategoryCheckBox.isSelected()) {
                 foodDO.setFoodCategory(foodCategoryField.getText());
                 performQuery(foodInventory::foodInventoryFindByCategory, foodDO);
-            } else if (supplierNameCheckBox.isSelected()) {
-                foodDO.setSupplierName(supplierNameField.getText());
+            } else if (supplierNumberCheckBox.isSelected()) {
+                foodDO.setSupplierNumber(Integer.valueOf(supplierNumberField.getText()));
                 performQuery(foodInventory::foodInventoryFindBySupplierName, foodDO);
             }
         });
         add(searchButton, gbc);
-        // 添加查询结果显示区域
+        // 添加跳转到更新界面的按钮
         gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        JButton updateButton = new JButton("更新库存(请记住编号)");
+        updateButton.addActionListener(e -> cardLayout.show(mainPanel, "UpdateInventory"));
+        add(updateButton, gbc);
+        // 添加跳转到删除界面的按钮
+        gbc.gridy = 6;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        JButton deleteButton = new JButton("删除库存(请记住编号)");
+        deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteInventory"));
+        add(updateButton, gbc);
+
+        // 添加查询结果显示区域
+        gbc.gridy = 7;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
@@ -84,7 +101,7 @@ public class QueryInventory extends JPanel {
         add(scrollPane, gbc);
 
         // 添加返回主菜单按钮
-        gbc.gridy = 6;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
@@ -96,16 +113,19 @@ public class QueryInventory extends JPanel {
         // 添加复选框的监听器，确保每次只能选中一个复选框
         addCheckboxListeners();
     }
+
+    //勾选框监视器
     private void addCheckboxListeners() {
         foodNumberCheckBox.addActionListener(e -> toggleTextFields(foodNumberCheckBox));
         foodNameCheckBox.addActionListener(e -> toggleTextFields(foodNameCheckBox));
         foodCategoryCheckBox.addActionListener(e -> toggleTextFields(foodCategoryCheckBox));
-        supplierNameCheckBox.addActionListener(e -> toggleTextFields(supplierNameCheckBox));
+        supplierNumberCheckBox.addActionListener(e -> toggleTextFields(supplierNumberCheckBox));
     }
 
+    //确保只能填写一个
     private void toggleTextFields(JCheckBox selectedCheckBox) {
-        JCheckBox[] checkboxes = {foodNumberCheckBox, foodNameCheckBox, foodCategoryCheckBox, supplierNameCheckBox};
-        JTextField[] fields = {foodNumberField, foodNameField, foodCategoryField, supplierNameField};
+        JCheckBox[] checkboxes = {foodNumberCheckBox, foodNameCheckBox, foodCategoryCheckBox, supplierNumberCheckBox};
+        JTextField[] fields = {foodNumberField, foodNameField, foodCategoryField, supplierNumberField};
         for (int i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i] != selectedCheckBox) {
                 checkboxes[i].setSelected(false);

@@ -18,10 +18,10 @@ public class FoodInventoryImpl implements FoodInventoryMapper {
      * @return 是否完成添加
      */
     @Override
-    public boolean foodInventoryUpdate(FoodDO foodDO) {
+    public boolean foodInventoryInsert(FoodDO foodDO) {
         try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
-            return mapper.foodInventoryUpdate(foodDO);
+            return mapper.foodInventoryInsert(foodDO);
         }
     }
 
@@ -75,6 +75,58 @@ public class FoodInventoryImpl implements FoodInventoryMapper {
         try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
             return mapper.foodInventoryFindBySupplierName(foodDO);
+        }
+    }
+
+    /**
+     * 获取食品信息
+     * @param foodDO 食品类
+     * @return 单个食品信息
+     */
+    @Override
+    public FoodDO getFoodDO(FoodDO foodDO) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
+            return mapper.getFoodDO(foodDO);
+        }
+    }
+
+    /**
+     * 更新食品信息
+     * @param foodDO 食品类
+     * @return 是否更新成功
+     */
+    @Override
+    public boolean updateFood(FoodDO foodDO) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
+            return mapper.updateFood(foodDO);
+        }
+    }
+
+    /**
+     * 删除食品信息
+     * @param foodDO 食品类
+     * @return 是否删除成功
+     */
+    @Override
+    public boolean deleteFood(FoodDO foodDO) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
+            return mapper.deleteFood(foodDO);
+        }
+    }
+
+    /**
+     * 通过供应商编号查询
+     * @param foodDO 食品类
+     * @return 链表
+     */
+    @Override
+    public List<FoodDO> foodInventoryFindBySupplierNumber(FoodDO foodDO) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
+            return mapper.foodInventoryFindBySupplierNumber(foodDO);
         }
     }
 }
