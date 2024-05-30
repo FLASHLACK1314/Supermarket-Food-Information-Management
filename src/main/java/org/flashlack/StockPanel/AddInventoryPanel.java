@@ -57,9 +57,12 @@ public class AddInventoryPanel extends JPanel {
             FoodInventoryImpl foodInventory = new FoodInventoryImpl();
             try {
                 foodInventory.foodInventoryUpdate(foodDO);
-            } catch (RuntimeException err){
-                //TODO 添加文本框提示
+                // 添加成功，显示成功消息
+                JOptionPane.showMessageDialog(AddInventoryPanel.this, "添加成功", "消息", JOptionPane.INFORMATION_MESSAGE);
+            } catch (RuntimeException err) {
                 err.printStackTrace();
+                // 添加失败，显示错误消息
+                JOptionPane.showMessageDialog(AddInventoryPanel.this, "添加失败:","消息", JOptionPane.ERROR_MESSAGE);
             }
         });
         add(finishButton, gbc);

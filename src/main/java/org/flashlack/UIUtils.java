@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * 方法类
  * @author FALSHLACK
  */
 public class UIUtils {
