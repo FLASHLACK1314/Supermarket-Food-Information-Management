@@ -2,6 +2,7 @@ package org.flashlack;
 
 import org.flashlack.StockPanel.AddInventoryPanel;
 import org.flashlack.StockPanel.InventoryPanel;
+import org.flashlack.StockPanel.QueryInventory;
 import org.flashlack.entity.UserDO;
 import org.flashlack.mappers.impl.UserImpl;
 
@@ -29,18 +30,21 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
         // 创建主面板
-        JPanel menuPanel = createMenuPanel(cardLayout, mainPanel);
+        @SuppressWarnings("unused") JPanel menuPanel = createMenuPanel(cardLayout, mainPanel);
         // 创建库存管理面板
         InventoryPanel inventoryPanel = new InventoryPanel(cardLayout, mainPanel);
         mainPanel.add(inventoryPanel, "Inventory");
         // 创建添加库存类
         AddInventoryPanel addInventoryPanel = new AddInventoryPanel(cardLayout, mainPanel);
         mainPanel.add(addInventoryPanel, "AddInventory");
+        //创建查询库存类
+        QueryInventory queryInventory = new QueryInventory(cardLayout, mainPanel);
+        mainPanel.add(queryInventory, "QueryInventory");
         // 创建并添加帮助面板
         HelpPanel helpPanel = new HelpPanel(cardLayout, mainPanel);
         mainPanel.add(helpPanel, "Help");
         // 创建登录面板
-        JPanel loginPanel = createLoginPanel(cardLayout, mainPanel, menuPanel);
+        JPanel loginPanel = createLoginPanel(cardLayout, mainPanel);
         // 添加登录面板到卡片布局
         mainPanel.add(loginPanel, "Login");
         // 设置初始显示的面板为登录面板
@@ -102,10 +106,9 @@ public class Main {
      *
      * @param cardLayout —— 布局
      * @param mainPanel  —— 主页
-     * @param menuPanel  —— 主页
      * @return loginPanel
      */
-    private static JPanel createLoginPanel(CardLayout cardLayout, JPanel mainPanel, JPanel menuPanel) {
+    private static JPanel createLoginPanel(CardLayout cardLayout, JPanel mainPanel) {
         JPanel loginPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);

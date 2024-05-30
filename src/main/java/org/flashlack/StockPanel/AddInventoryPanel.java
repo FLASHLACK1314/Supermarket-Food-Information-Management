@@ -43,9 +43,9 @@ public class AddInventoryPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         JButton finishButton = new JButton("添加");
+        //监听添加按钮
         finishButton.addActionListener(e -> {
-            // 在这里执行完成按钮点击后的操作
-            // 例如，获取文本框中的值并进行处理
+            // 获取文本框中的值并进行处理
             FoodDO foodDO = new FoodDO();
             foodDO.setFoodNumber(foodNumberField.getText())
                     .setFoodName(foodNameField.getText())
@@ -66,8 +66,21 @@ public class AddInventoryPanel extends JPanel {
             }
         });
         add(finishButton, gbc);
-        // 添加返回主菜单按钮
+        // 添加清除数据按钮
         gbc.gridy = 7;
+        JButton clearButton = new JButton("清除数据");
+        clearButton.addActionListener(e -> {
+            // 清除所有文本框的数据
+            foodNumberField.setText("");
+            foodNameField.setText("");
+            foodCategoryField.setText("");
+            foodPriceField.setText("");
+            stockQuantityField.setText("");
+            supplierNameField.setText("");
+        });
+        add(clearButton, gbc);
+        // 添加返回主菜单按钮
+        gbc.gridy = 8;
         JButton backButton = new JButton("返回主菜单");
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Menu"));
         add(backButton, gbc);
