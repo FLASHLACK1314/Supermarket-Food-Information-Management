@@ -92,6 +92,9 @@ public class Main {
         //创建查询员工类
         QueryStaffPanel queryStaffPanel = new QueryStaffPanel(cardLayout, mainPanel);
         mainPanel.add(queryStaffPanel, "QueryStaff");
+        //创建关于我们类
+        AboutUsPanel aboutUsPanel = new AboutUsPanel(cardLayout, mainPanel);
+        mainPanel.add(aboutUsPanel, "AboutUs");
         // 创建并添加帮助面板
         HelpPanel helpPanel = new HelpPanel(cardLayout, mainPanel);
         mainPanel.add(helpPanel, "Help");
@@ -123,8 +126,8 @@ public class Main {
         JButton button2 = new JButton("销售管理");
         JButton button3 = new JButton("供应商管理");
         JButton button4 = new JButton("员工管理");
-        JButton button5 = new JButton("查看总利润");
-        JButton button6 = new JButton("数据库连接");
+        JButton button5 = new JButton("清空数据库");
+        JButton button6 = new JButton("关于我们");
         JButton button7 = new JButton("帮助");
         JButton button8 = new JButton("退出");
         // 添加按钮
@@ -152,6 +155,8 @@ public class Main {
         button3.addActionListener(e -> cardLayout.show(mainPanel, "SupplierTotal"));
         //为员工管理添加监听器
         button4.addActionListener(e -> cardLayout.show(mainPanel, "StaffTotal"));
+        //为关于我们创建监听器
+        button6.addActionListener(e -> cardLayout.show(mainPanel, "AboutUs"));
         // 为帮助按钮添加动作监听器，切换到帮助面板
         button7.addActionListener(e -> cardLayout.show(mainPanel, "Help"));
         // 为退出按钮添加动作监听器，退出程序

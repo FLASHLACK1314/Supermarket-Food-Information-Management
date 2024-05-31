@@ -91,4 +91,12 @@ public class SupplierImpl implements SupplierMapper {
             return mapper.selectSupplierByName(supplierDO);
         }
     }
+
+    @Override
+    public boolean deleteSupplier() {
+        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            SupplierMapper mapper = sqlSession.getMapper(SupplierMapper.class);
+            return mapper.deleteSupplier();
+        }
+    }
 }

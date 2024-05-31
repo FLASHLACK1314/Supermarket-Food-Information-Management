@@ -68,6 +68,7 @@ public class AddSalesPanel extends JPanel {
                     if (staff.selectStaffByNumber(staffDO)!=null) {
                         //员工编号存在
                         try {
+                            //存入食品销售记录
                             sales.insertSales(salesDO);
                             JOptionPane.showMessageDialog(AddSalesPanel.this, "添加成功", "消息", JOptionPane.INFORMATION_MESSAGE);
                         } catch (RuntimeException err) {

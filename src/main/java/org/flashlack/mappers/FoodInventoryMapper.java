@@ -31,4 +31,6 @@ public interface FoodInventoryMapper {
     boolean deleteFood(FoodDO foodDO);
     @Select("SELECT * FROM food_inventory WHERE supplier_number = #{supplierNumber}")
     List<FoodDO> foodInventoryFindBySupplierNumber(FoodDO foodDO);
+    @Delete("DELETE food_inventory")
+    boolean deleteAllFoodInventory();
 }

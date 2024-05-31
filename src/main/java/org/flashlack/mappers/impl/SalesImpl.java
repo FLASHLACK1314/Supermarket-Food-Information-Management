@@ -111,4 +111,12 @@ public class SalesImpl implements SalesMapper {
             return mapper.selectSalesListByStaff(salesDO);
         }
     }
+
+    @Override
+    public Boolean deleteAllSales() {
+        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            SalesMapper mapper = sqlSession.getMapper(SalesMapper.class);
+            return mapper.deleteAllSales();
+        }
+    }
 }
