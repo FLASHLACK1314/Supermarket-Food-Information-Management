@@ -1,5 +1,6 @@
 package org.flashlack;
 
+import org.flashlack.salesPanel.*;
 import org.flashlack.staffPanel.*;
 import org.flashlack.stockPanel.*;
 import org.flashlack.entity.UserDO;
@@ -46,6 +47,21 @@ public class Main {
         //创建删除库存类
         DeleteInventoryPanel deleteInventoryPanel = new DeleteInventoryPanel(cardLayout, mainPanel);
         mainPanel.add(deleteInventoryPanel, "DeleteInventory");
+        //创建销售管理面板
+        SalesTotalPanel salesTotalPanel = new SalesTotalPanel(cardLayout, mainPanel);
+        mainPanel.add(salesTotalPanel, "SalesTotal");
+        //创建添加销售记录面板
+        AddSalesPanel addSalesPanel = new AddSalesPanel(cardLayout, mainPanel);
+        mainPanel.add(addSalesPanel, "AddSales");
+        //创建删除销售类
+        DeleteSalesPanel deleteSalesPanel = new DeleteSalesPanel(cardLayout, mainPanel);
+        mainPanel.add(deleteSalesPanel, "DeleteSales");
+        //创建更新销售类
+        UpdateSalesPanel updateSalesPanel = new UpdateSalesPanel(cardLayout, mainPanel);
+        mainPanel.add(updateSalesPanel, "UpdateSales");
+        //创建查询销售类
+        QuerySalesPanel querySalesPanel = new QuerySalesPanel(cardLayout, mainPanel);
+        mainPanel.add(querySalesPanel, "QuerySales");
         //创建管理供应商面板
         SupplierTotalPanel supplierTotalPanel = new SupplierTotalPanel(cardLayout, mainPanel);
         mainPanel.add(supplierTotalPanel, "SupplierTotal");
@@ -130,6 +146,8 @@ public class Main {
         mainPanel.add(menuPanel, "Menu");
         // 为库存管理按钮添加动作监听器，切换到库存管理面板
         button1.addActionListener(e -> cardLayout.show(mainPanel, "Inventory"));
+        //为销售管理按钮添加监听器
+        button2.addActionListener(e -> cardLayout.show(mainPanel, "SalesTotal"));
         //为供应商管理添加监听器，切换到供应商管理面板
         button3.addActionListener(e -> cardLayout.show(mainPanel, "SupplierTotal"));
         //为员工管理添加监听器

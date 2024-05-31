@@ -2,7 +2,9 @@ package org.flashlack.stockPanel;
 
 import org.flashlack.UIUtils;
 import org.flashlack.entity.FoodDO;
+import org.flashlack.entity.SupplierDO;
 import org.flashlack.mappers.impl.FoodInventoryImpl;
+import org.flashlack.mappers.impl.SupplierImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,40 +76,52 @@ public class UpdateInventoryPanel extends JPanel {
             }
             if (supplierNumberCheckBox.isSelected()) {
                 foodDO.setSupplierNumber(Integer.valueOf(supplierNumberField.getText()));
+                SupplierDO supplierDO = new SupplierDO();
+                SupplierImpl supplier = new SupplierImpl();
+                supplierDO.setSupplierNumber(foodDO.getSupplierNumber());
+                try {
+                    if (supplier.selectSupplier(supplierDO) == null) {
+                        JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "新人供应商号不存在", "错误", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                } catch (RuntimeException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "查询供应商编号失败: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+                }
             }
             //进行查询
             FoodInventoryImpl foodInventory = new FoodInventoryImpl();
-            try{
+            try {
                 FoodDO odlFood = foodInventory.getFoodDO(foodDO);
-                if (odlFood!=null) {
+                if (odlFood != null) {
                     //进行新值与旧值的交换修改
-                    if (foodDO.getFoodName() == null){
+                    if (foodDO.getFoodName() == null) {
                         foodDO.setFoodName(odlFood.getFoodName());
                     }
-                    if (foodDO.getFoodCategory() == null){
+                    if (foodDO.getFoodCategory() == null) {
                         foodDO.setFoodCategory(odlFood.getFoodCategory());
                     }
-                    if (foodDO.getFoodPrice() == null){
+                    if (foodDO.getFoodPrice() == null) {
                         foodDO.setFoodPrice(odlFood.getFoodPrice());
                     }
-                    if (foodDO.getStockQuantity() == null){
+                    if (foodDO.getStockQuantity() == null) {
                         foodDO.setStockQuantity(odlFood.getStockQuantity());
                     }
-                    if (foodDO.getSupplierNumber() == null){
+                    if (foodDO.getSupplierNumber() == null) {
                         foodDO.setSupplierNumber(odlFood.getSupplierNumber());
                     }
                     //交换好后进行数据库操作
-                    try{
-                       foodInventory.updateFood(foodDO);
-                        JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "更新成功 " , "错误", JOptionPane.INFORMATION_MESSAGE);
-                    }catch (RuntimeException err){
+                    try {
+                        foodInventory.updateFood(foodDO);
+                        JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "更新成功 ", "错误", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (RuntimeException err) {
                         err.printStackTrace();
                         JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "查询失败: " + err.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "没有此编号", "错误", JOptionPane.ERROR_MESSAGE);
                 }
-            }catch (RuntimeException err) {
+            } catch (RuntimeException err) {
                 err.printStackTrace();
                 JOptionPane.showMessageDialog(UpdateInventoryPanel.this, "查询失败: " + err.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
             }
