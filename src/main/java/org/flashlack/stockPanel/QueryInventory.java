@@ -1,4 +1,4 @@
-package org.flashlack.StockPanel;
+package org.flashlack.stockPanel;
 
 import org.flashlack.UIUtils;
 import org.flashlack.entity.FoodDO;
@@ -27,7 +27,7 @@ public class QueryInventory extends JPanel {
         setLayout(new GridBagLayout());
         // 设置布局
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.insets = new Insets(5, 10, 0, 10);
 
         // 设置复选框和文本框
         foodNumberCheckBox = new JCheckBox();
@@ -80,28 +80,38 @@ public class QueryInventory extends JPanel {
         JButton updateButton = new JButton("更新库存(请记住编号)");
         updateButton.addActionListener(e -> cardLayout.show(mainPanel, "UpdateInventory"));
         add(updateButton, gbc);
+
         // 添加跳转到删除界面的按钮
         gbc.gridy = 6;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
         JButton deleteButton = new JButton("删除库存(请记住编号)");
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteInventory"));
-        add(updateButton, gbc);
+        add(deleteButton, gbc);
+
+        // 添加清除数据按钮
+        gbc.gridy = 7;
+        JButton clearButton = new JButton("清除数据");
+        clearButton.addActionListener(e -> {
+            // 清除所有文本框的数据
+            foodNumberField.setText("");
+            foodNameField.setText("");
+            foodCategoryField.setText("");
+            supplierNumberField.setText("");
+        });
+        add(clearButton, gbc);
 
         // 添加查询结果显示区域
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
         resultArea = new JTextArea();
         resultArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(resultArea);
         add(scrollPane, gbc);
 
         // 添加返回主菜单按钮
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
@@ -155,5 +165,6 @@ public class QueryInventory extends JPanel {
             JOptionPane.showMessageDialog(QueryInventory.this, "查询失败: " + err.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
 

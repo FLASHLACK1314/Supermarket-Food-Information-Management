@@ -1,4 +1,4 @@
-package org.flashlack.StockPanel;
+package org.flashlack.stockPanel;
 
 import org.flashlack.UIUtils;
 import org.flashlack.entity.FoodDO;
@@ -117,8 +117,14 @@ public class UpdateInventoryPanel extends JPanel {
         // 返回按钮
         gbc.gridy = 7;
         gbc.gridwidth = 2;
-        JButton backButton = new JButton("返回查询界面");
-        backButton.addActionListener(e -> cardLayout.show(mainPanel, "QueryInventoryPanel"));
+        JButton backUpdateButton = new JButton("返回查询界面");
+        backUpdateButton.addActionListener(e -> cardLayout.show(mainPanel, "QueryInventory"));
+        add(backUpdateButton, gbc);
+
+        // 添加返回主菜单按钮
+        gbc.gridy = 8;
+        JButton backButton = new JButton("返回主菜单");
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Menu"));
         add(backButton, gbc);
         //确保勾上以后才能修改
         addCheckboxListeners();

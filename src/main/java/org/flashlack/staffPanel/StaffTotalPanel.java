@@ -1,28 +1,29 @@
-package org.flashlack.supplierPanel;
+package org.flashlack.staffPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
+ * 员工管理主界面类
  * @author FLASHLACK
  */
-public class SupplierTotalPanel extends JPanel {
-    public SupplierTotalPanel(CardLayout cardLayout, JPanel mainPanel) {
+public class StaffTotalPanel extends JPanel {
+    public StaffTotalPanel(CardLayout cardLayout, JPanel mainPanel) {
         setLayout(new BorderLayout());
         //标签设置
         JLabel inventoryLabel = new JLabel("供应商管理界面", SwingConstants.CENTER);
         add(inventoryLabel, BorderLayout.NORTH);
         // 添加按钮面板
         JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
-        JButton addSupplierButton = new JButton("增加供应商");
-        JButton querySupplierButton = new JButton("查询供应商");
-        JButton updateSupplierButton = new JButton("更新供应商");
-        JButton deleteSupplierButton = new JButton("删除供应商");
+        JButton addStaffButton = new JButton("增加员工");
+        JButton queryStaffButton = new JButton("查询员工");
+        JButton updateStaffButton = new JButton("更新员工");
+        JButton deleteStaffButton = new JButton("删除员工");
         JButton backButton = new JButton("返回主菜单");
-        buttonPanel.add(addSupplierButton);
-        buttonPanel.add(querySupplierButton);
-        buttonPanel.add(updateSupplierButton);
-        buttonPanel.add(deleteSupplierButton);
+        buttonPanel.add(addStaffButton);
+        buttonPanel.add(queryStaffButton);
+        buttonPanel.add(updateStaffButton);
+        buttonPanel.add(deleteStaffButton);
         buttonPanel.add(backButton);
         // 创建一个容器面板，并设置边距
         JPanel containerPanel = new JPanel(new BorderLayout());
@@ -31,15 +32,14 @@ public class SupplierTotalPanel extends JPanel {
         //将容器面板投入当前面板中
         add(containerPanel, BorderLayout.CENTER);
         //创建增加增加供应商监听器
-        addSupplierButton.addActionListener(e -> cardLayout.show(mainPanel, "AddSupplier"));
+        addStaffButton.addActionListener(e -> cardLayout.show(mainPanel, "AddStaff"));
         //创建查询供应商监听器
-        querySupplierButton.addActionListener(e -> cardLayout.show(mainPanel, "QuerySupplier"));
+        queryStaffButton.addActionListener(e -> cardLayout.show(mainPanel, "QueryStaff"));
         //创建更新供应商监听器
-        updateSupplierButton.addActionListener(e -> cardLayout.show(mainPanel, "UpdateSupplier"));
+        updateStaffButton.addActionListener(e -> cardLayout.show(mainPanel, "UpdateStaff"));
         //创建删除供应商监听器
-        deleteSupplierButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteSupplier"));
+        deleteStaffButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteStaff"));
         // 为返回按钮添加动作监听器，返回主菜单
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Menu"));
     }
 }
-

@@ -1,11 +1,10 @@
 package org.flashlack;
 
-import org.flashlack.StockPanel.*;
+import org.flashlack.staffPanel.*;
+import org.flashlack.stockPanel.*;
 import org.flashlack.entity.UserDO;
 import org.flashlack.mappers.impl.UserImpl;
-import org.flashlack.supplierPanel.AddSupplierPanel;
-import org.flashlack.supplierPanel.DeleteSupplierPanel;
-import org.flashlack.supplierPanel.SupplierTotalPanel;
+import org.flashlack.supplierPanel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,6 +55,27 @@ public class Main {
         //创建删除供应商类
         DeleteSupplierPanel deleteSupplierPanel = new DeleteSupplierPanel(cardLayout, mainPanel);
         mainPanel.add(deleteSupplierPanel, "DeleteSupplier");
+        //创建更新供应商类
+        UpdateSupplierPanel updateSupplierPanel = new UpdateSupplierPanel(cardLayout, mainPanel);
+        mainPanel.add(updateSupplierPanel, "UpdateSupplier");
+        //创建查询供应商类
+        QuerySupplierPanel querySupplierPanel = new QuerySupplierPanel(cardLayout, mainPanel);
+        mainPanel.add(querySupplierPanel, "QuerySupplier");
+        //创建员工面板
+        StaffTotalPanel staffTotalPanel = new StaffTotalPanel(cardLayout, mainPanel);
+        mainPanel.add(staffTotalPanel, "StaffTotal");
+        //创建添加员工类
+        AddStaffPanel addStaffPanel = new AddStaffPanel(cardLayout, mainPanel);
+        mainPanel.add(addStaffPanel, "AddStaff");
+        //创建删除员工类
+        DeleteStaffPanel deleteStaffPanel = new DeleteStaffPanel(cardLayout, mainPanel);
+        mainPanel.add(deleteStaffPanel, "DeleteStaff");
+        //创建更新员工类
+        UpdateStaffPanel updateStaffPanel = new UpdateStaffPanel(cardLayout, mainPanel);
+        mainPanel.add(updateStaffPanel, "UpdateStaff");
+        //创建查询员工类
+        QueryStaffPanel queryStaffPanel = new QueryStaffPanel(cardLayout, mainPanel);
+        mainPanel.add(queryStaffPanel, "QueryStaff");
         // 创建并添加帮助面板
         HelpPanel helpPanel = new HelpPanel(cardLayout, mainPanel);
         mainPanel.add(helpPanel, "Help");
@@ -112,6 +132,8 @@ public class Main {
         button1.addActionListener(e -> cardLayout.show(mainPanel, "Inventory"));
         //为供应商管理添加监听器，切换到供应商管理面板
         button3.addActionListener(e -> cardLayout.show(mainPanel, "SupplierTotal"));
+        //为员工管理添加监听器
+        button4.addActionListener(e -> cardLayout.show(mainPanel, "StaffTotal"));
         // 为帮助按钮添加动作监听器，切换到帮助面板
         button7.addActionListener(e -> cardLayout.show(mainPanel, "Help"));
         // 为退出按钮添加动作监听器，退出程序

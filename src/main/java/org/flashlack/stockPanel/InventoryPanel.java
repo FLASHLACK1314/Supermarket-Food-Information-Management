@@ -1,4 +1,4 @@
-package org.flashlack.StockPanel;
+package org.flashlack.stockPanel;
 
 import javax.swing.*;
 import java.awt.*;

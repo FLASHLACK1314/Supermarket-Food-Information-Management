@@ -1,4 +1,4 @@
-package org.flashlack.StockPanel;
+package org.flashlack.stockPanel;
 
 import org.flashlack.UIUtils;
 import org.flashlack.entity.FoodDO;
