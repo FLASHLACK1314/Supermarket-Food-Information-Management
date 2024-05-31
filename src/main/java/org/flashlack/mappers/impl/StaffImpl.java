@@ -111,11 +111,4 @@ public class StaffImpl implements StaffMapper {
         }
     }
 
-    @Override
-    public boolean deleteStaff() {
-        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
-            StaffMapper mapper = sqlSession.getMapper(StaffMapper.class);
-            return mapper.deleteStaff();
-        }
-    }
 }

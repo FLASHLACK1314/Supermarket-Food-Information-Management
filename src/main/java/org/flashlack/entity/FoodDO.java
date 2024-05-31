@@ -33,6 +33,6 @@ public class FoodDO {
                 "食品类别: " + foodCategory + "\n" +
                 "食品进价: " + foodPrice + "\n" +
                 "库存数量: " + stockQuantity + "\n" +
-                "供应商名称: " + supplierNumber;
+                "供应商编号: " + supplierNumber;
     }
 }

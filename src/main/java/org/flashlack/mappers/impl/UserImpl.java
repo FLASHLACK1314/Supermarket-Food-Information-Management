@@ -13,6 +13,7 @@ public class UserImpl implements UserMappper {
     public UserDO loginSelect(UserDO userDO) {
         try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             UserMappper mapper = sqlSession.getMapper(UserMappper.class);
+            System.out.println("登录验证");
             return mapper.loginSelect(userDO);
         }
     }

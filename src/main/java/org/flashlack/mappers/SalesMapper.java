@@ -27,6 +27,4 @@ public interface SalesMapper {
     List<SalesDO> selectSalesListByFood(SalesDO salesDO);
     @Select("SELECT * FROM food_sales WHERE staff_number = #{staffNumber}")
     List<SalesDO> selectSalesListByStaff(SalesDO salesDO);
-    @Delete("DELETE food_sales ")
-    Boolean deleteAllSales();
 }

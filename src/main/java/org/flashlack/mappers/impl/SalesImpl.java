@@ -112,11 +112,4 @@ public class SalesImpl implements SalesMapper {
         }
     }
 
-    @Override
-    public Boolean deleteAllSales() {
-        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
-            SalesMapper mapper = sqlSession.getMapper(SalesMapper.class);
-            return mapper.deleteAllSales();
-        }
-    }
 }

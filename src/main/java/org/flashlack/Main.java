@@ -121,15 +121,14 @@ public class Main {
         JPanel menuPanel = new JPanel(new BorderLayout());
         JLabel titleLabel = new JLabel("超市食品信息管理系统", SwingConstants.CENTER);
         menuPanel.add(titleLabel, BorderLayout.NORTH);
-        JPanel buttonPanel = new JPanel(new GridLayout(8, 1, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(7, 1, 10, 10));
         JButton button1 = new JButton("库存管理");
         JButton button2 = new JButton("销售管理");
         JButton button3 = new JButton("供应商管理");
         JButton button4 = new JButton("员工管理");
-        JButton button5 = new JButton("清空数据库");
-        JButton button6 = new JButton("关于我们");
-        JButton button7 = new JButton("帮助");
-        JButton button8 = new JButton("退出");
+        JButton button5 = new JButton("关于我们");
+        JButton button6 = new JButton("帮助");
+        JButton button7 = new JButton("退出");
         // 添加按钮
         buttonPanel.add(button1);
         buttonPanel.add(button2);
@@ -138,7 +137,6 @@ public class Main {
         buttonPanel.add(button5);
         buttonPanel.add(button6);
         buttonPanel.add(button7);
-        buttonPanel.add(button8);
         // 创建一个容器面板，设置边距
         JPanel containerPanel = new JPanel(new BorderLayout());
         containerPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 0, 30));
@@ -155,12 +153,12 @@ public class Main {
         button3.addActionListener(e -> cardLayout.show(mainPanel, "SupplierTotal"));
         //为员工管理添加监听器
         button4.addActionListener(e -> cardLayout.show(mainPanel, "StaffTotal"));
-        //为关于我们创建监听器
-        button6.addActionListener(e -> cardLayout.show(mainPanel, "AboutUs"));
+        //为关 于我们创建监听器
+        button5.addActionListener(e -> cardLayout.show(mainPanel, "AboutUs"));
         // 为帮助按钮添加动作监听器，切换到帮助面板
-        button7.addActionListener(e -> cardLayout.show(mainPanel, "Help"));
+        button6.addActionListener(e -> cardLayout.show(mainPanel, "Help"));
         // 为退出按钮添加动作监听器，退出程序
-        button8.addActionListener(e -> System.exit(0));
+        button7.addActionListener(e -> System.exit(0));
         return menuPanel;
     }
 

@@ -130,11 +130,4 @@ public class FoodInventoryImpl implements FoodInventoryMapper {
         }
     }
 
-    @Override
-    public boolean deleteAllFoodInventory() {
-        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
-            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
-            return mapper.deleteAllFoodInventory();
-        }
-    }
 }

@@ -13,7 +13,7 @@ public class AboutUsPanel extends JPanel {
 
         // 标签设置
         JLabel titleLabel = new JLabel("关于我们", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font(null, Font.BOLD, 24));
         add(titleLabel, BorderLayout.NORTH);
 
         // 文本区域
@@ -31,7 +31,7 @@ public class AboutUsPanel extends JPanel {
         aboutText.setEditable(false);
         aboutText.setLineWrap(true);
         aboutText.setWrapStyleWord(true);
-        aboutText.setFont(new Font("Arial", Font.PLAIN, 16));
+        aboutText.setFont(new Font(null, Font.PLAIN, 16));
         JScrollPane scrollPane = new JScrollPane(aboutText);
         add(scrollPane, BorderLayout.CENTER);
 

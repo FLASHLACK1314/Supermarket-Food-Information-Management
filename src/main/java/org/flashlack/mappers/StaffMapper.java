@@ -28,6 +28,4 @@ public interface StaffMapper {
     List<StaffDO> selectStaffListByName(StaffDO staffDO);
     @Select("SELECT * FROM staff WHERE staff_sex = #{staffSex}")
     List<StaffDO> selectStaffListBySex(StaffDO staffDO);
-    @Delete("DELETE staff")
-    boolean deleteStaff();
 }
