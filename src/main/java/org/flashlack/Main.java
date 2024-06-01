@@ -1,10 +1,10 @@
 package org.flashlack;
 
+import org.flashlack.entity.UserDO;
+import org.flashlack.mappers.impl.UserImpl;
 import org.flashlack.salesPanel.*;
 import org.flashlack.staffPanel.*;
 import org.flashlack.stockPanel.*;
-import org.flashlack.entity.UserDO;
-import org.flashlack.mappers.impl.UserImpl;
 import org.flashlack.supplierPanel.*;
 
 import javax.swing.*;
@@ -92,6 +92,9 @@ public class Main {
         //创建查询员工类
         QueryStaffPanel queryStaffPanel = new QueryStaffPanel(cardLayout, mainPanel);
         mainPanel.add(queryStaffPanel, "QueryStaff");
+        //创建清空类
+        ClearDatabasePanel clearDatabasePanel = new ClearDatabasePanel(cardLayout, mainPanel);
+        mainPanel.add(clearDatabasePanel, "ClearDatabase");
         //创建关于我们类
         AboutUsPanel aboutUsPanel = new AboutUsPanel(cardLayout, mainPanel);
         mainPanel.add(aboutUsPanel, "AboutUs");
@@ -155,7 +158,9 @@ public class Main {
         button3.addActionListener(e -> cardLayout.show(mainPanel, "SupplierTotal"));
         //为员工管理添加监听器
         button4.addActionListener(e -> cardLayout.show(mainPanel, "StaffTotal"));
-        //为关于我们创建监听器
+        //为清空数据库添加监听器
+        button5.addActionListener(e -> cardLayout.show(mainPanel, "ClearDatabase"));
+        //为关 于我们创建监听器
         button6.addActionListener(e -> cardLayout.show(mainPanel, "AboutUs"));
         // 为帮助按钮添加动作监听器，切换到帮助面板
         button7.addActionListener(e -> cardLayout.show(mainPanel, "Help"));

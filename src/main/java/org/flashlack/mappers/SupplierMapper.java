@@ -26,6 +26,4 @@ public interface SupplierMapper {
     List<SupplierDO> selectSupplierList(SupplierDO supplierDO);
     @Select("SELECT * FROM supplier WHERE supplier_name = #{supplierName}")
     List<SupplierDO> selectSupplierByName(SupplierDO supplierDO);
-    @Delete("DELETE supplier")
-    boolean deleteSupplier();
 }

@@ -5,6 +5,7 @@ import org.flashlack.entity.SupplierDO;
 import org.flashlack.mappers.SupplierMapper;
 import org.flashlack.util.MybatisUtil;
 
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -92,11 +93,16 @@ public class SupplierImpl implements SupplierMapper {
         }
     }
 
-    @Override
-    public boolean deleteSupplier() {
+    public void deleteSupplier() {
         try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
-            SupplierMapper mapper = sqlSession.getMapper(SupplierMapper.class);
-            return mapper.deleteSupplier();
+            Statement statement = sqlSession.getConnection().createStatement();
+            statement.executeUpdate("alter table food_inventory drop constraint food_inventory_supplier_supplier_number_fk");
+            statement.executeUpdate("TRUNCATE TABLE food_inventory");
+            statement.executeUpdate("TRUNCATE TABLE supplier");
+            statement.executeUpdate("alter table food_inventory add constraint food_inventory_supplier_supplier_number_fk foreign key (supplier_number) references supplier");
+            statement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
