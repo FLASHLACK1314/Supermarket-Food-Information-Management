@@ -40,7 +40,7 @@ public class QueryInventory extends JPanel {
         foodCategoryField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, foodCategoryCheckBox, "食品类别:", 2);
 
         supplierNumberCheckBox = new JCheckBox();
-        supplierNumberField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNumberCheckBox, "供应商名称:", 3);
+        supplierNumberField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNumberCheckBox, "供应商编号:", 3);
 
         // 增加字体宽度
         Font font = new Font(null, Font.PLAIN, 15);

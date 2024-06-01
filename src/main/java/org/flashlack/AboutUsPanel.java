@@ -13,13 +13,14 @@ public class AboutUsPanel extends JPanel {
 
         // 标签设置
         JLabel titleLabel = new JLabel("关于我们", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font(null, Font.BOLD, 24));
         add(titleLabel, BorderLayout.NORTH);
 
         // 文本区域
         JTextArea aboutText = new JTextArea();
         aboutText.setText(
-                "欢迎使用我们的软件！\n\n" +
+                "欢迎使用我们的软件！\n" +
+                        "\n" +
                         "此软件是一个全面的供应链管理系统，旨在帮助企业高效地管理供应商、库存和销售。\n" +
                         "主要功能包括：\n" +
                         "- 增加、查询、更新和删除供应商信息\n" +
@@ -31,7 +32,7 @@ public class AboutUsPanel extends JPanel {
         aboutText.setEditable(false);
         aboutText.setLineWrap(true);
         aboutText.setWrapStyleWord(true);
-        aboutText.setFont(new Font("Arial", Font.PLAIN, 16));
+        aboutText.setFont(new Font(null, Font.PLAIN, 16));
         JScrollPane scrollPane = new JScrollPane(aboutText);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -43,20 +44,4 @@ public class AboutUsPanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("About Us");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
-
-        CardLayout cardLayout = new CardLayout();
-        JPanel mainPanel = new JPanel(cardLayout);
-
-        AboutUsPanel aboutUsPanel = new AboutUsPanel(cardLayout, mainPanel);
-        mainPanel.add(aboutUsPanel, "AboutUs");
-
-        frame.add(mainPanel);
-        cardLayout.show(mainPanel, "AboutUs");
-
-        frame.setVisible(true);
-    }
 }

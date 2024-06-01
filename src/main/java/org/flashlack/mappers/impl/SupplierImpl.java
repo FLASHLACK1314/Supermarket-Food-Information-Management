@@ -5,7 +5,6 @@ import org.flashlack.entity.SupplierDO;
 import org.flashlack.mappers.SupplierMapper;
 import org.flashlack.util.MybatisUtil;
 
-import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -56,6 +55,7 @@ public class SupplierImpl implements SupplierMapper {
 
     /**
      * 更新供应商信息
+     *
      * @param supplierDO 供应商类
      * @return 成功
      */
@@ -69,6 +69,7 @@ public class SupplierImpl implements SupplierMapper {
 
     /**
      * 通过编号获取链表
+     *
      * @param supplierDO 供应商
      * @return 链表
      */
@@ -82,27 +83,16 @@ public class SupplierImpl implements SupplierMapper {
 
     /**
      * 通过名称获取链表
+     *
      * @param supplierDO 供应商类
      * @return 链表
      */
     @Override
     public List<SupplierDO> selectSupplierByName(SupplierDO supplierDO) {
-        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             SupplierMapper mapper = sqlSession.getMapper(SupplierMapper.class);
             return mapper.selectSupplierByName(supplierDO);
         }
     }
-
-    public void deleteSupplier() {
-        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
-            Statement statement = sqlSession.getConnection().createStatement();
-            statement.executeUpdate("alter table food_inventory drop constraint food_inventory_supplier_supplier_number_fk");
-            statement.executeUpdate("TRUNCATE TABLE food_inventory");
-            statement.executeUpdate("TRUNCATE TABLE supplier");
-            statement.executeUpdate("alter table food_inventory add constraint food_inventory_supplier_supplier_number_fk foreign key (supplier_number) references supplier");
-            statement.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
+
