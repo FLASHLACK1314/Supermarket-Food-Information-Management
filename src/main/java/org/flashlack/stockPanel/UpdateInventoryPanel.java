@@ -48,7 +48,7 @@ public class UpdateInventoryPanel extends JPanel {
         stockQuantityField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, stockQuantityCheckBox, "库存量:", 4);
 
         supplierNumberCheckBox = new JCheckBox();
-        supplierNumberField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNumberCheckBox, "供应商名称:", 5);
+        supplierNumberField = UIUtils.addLabeledTextFieldWithCheckbox(this, gbc, supplierNumberCheckBox, "供应商编号:", 5);
 
         gbc.gridy = 6;
         gbc.gridwidth = 2;

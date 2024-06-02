@@ -86,7 +86,7 @@ public class UpdateSupplierPanel extends JPanel {
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         JButton backUpdateButton = new JButton("返回查询界面");
-        backUpdateButton.addActionListener(e -> cardLayout.show(mainPanel, "QueryInventory"));
+        backUpdateButton.addActionListener(e -> cardLayout.show(mainPanel, "QuerySupplier"));
         add(backUpdateButton, gbc);
 
         // 添加清除数据按钮
