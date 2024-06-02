@@ -19,15 +19,14 @@ public class AboutUsPanel extends JPanel {
         // 文本区域
         JTextArea aboutText = new JTextArea();
         aboutText.setText(
-                "欢迎使用我们的软件！\n" +
+                "欢迎使用此软件！\n" +
                         "\n" +
                         "此软件是一个全面的供应链管理系统，旨在帮助企业高效地管理供应商、库存和销售。\n" +
                         "主要功能包括：\n" +
                         "- 增加、查询、更新和删除供应商信息\n" +
                         "- 管理食品库存\n" +
                         "- 记录和查询销售数据\n\n" +
-                        "我们的团队致力于提供优质的软件解决方案，以提高您的业务效率。\n\n" +
-                        "如果您有任何问题或建议，请随时联系我们。(flashlack1314@outlook.com)"
+                        "如果您有任何问题或建议，请随时联系我。(flashlack1314@outlook.com)"
         );
         aboutText.setEditable(false);
         aboutText.setLineWrap(true);
