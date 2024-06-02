@@ -24,6 +24,6 @@ public class SupplierDO {
     public String toChineseString() {
         return "供应商编号: " + supplierNumber + "\n" +
                 "供应商名称: " + supplierName + "\n" +
-                "供应商电话: " + supplierPhone;
+                "供应商联系方式: " + supplierPhone;
     }
 }

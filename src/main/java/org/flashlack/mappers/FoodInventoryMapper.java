@@ -33,4 +33,6 @@ public interface FoodInventoryMapper {
     List<FoodDO> foodInventoryFindBySupplierNumber(FoodDO foodDO);
     @Delete("DELETE food_inventory")
     boolean deleteAllFoodInventory();
+    @Select("SELECT * FROM food_inventory")
+    List<FoodDO> foodInventoryFindAll();
 }

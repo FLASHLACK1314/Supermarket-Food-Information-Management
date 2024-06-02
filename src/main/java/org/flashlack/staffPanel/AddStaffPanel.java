@@ -50,6 +50,16 @@ public class AddStaffPanel extends JPanel {
             staffDO.setStaffSex(staffSexField.getText());
             staffDO.setStaffPhone(staffPhoneField.getText());
             StaffImpl staff = new StaffImpl();
+            //检查编号
+            try{
+                if (staff.selectStaffByNumber(staffDO)!=null){
+                    JOptionPane.showMessageDialog(AddStaffPanel.this, "编号重复", "消息", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }catch (RuntimeException err){
+                JOptionPane.showMessageDialog(AddStaffPanel.this, "系统内部错误"
+                        + err.getMessage(), "失败", JOptionPane.ERROR_MESSAGE);
+            }
             try {
                 staff.insertStaff(staffDO);
                 JOptionPane.showMessageDialog(AddStaffPanel.this, "添加成功", "消息", JOptionPane.INFORMATION_MESSAGE);

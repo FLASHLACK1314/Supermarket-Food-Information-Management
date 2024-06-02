@@ -64,9 +64,19 @@ public class DeleteSupplierPanel extends JPanel {
         JButton clearButton = new JButton("清除");
         clearButton.addActionListener(e -> supplierNumberField.setText(""));
         add(clearButton, gbc);
+
+        // 返回查询界面按钮
+        gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        JButton backUpdateButton = new JButton("返回查询界面");
+        backUpdateButton.addActionListener(e -> cardLayout.show(mainPanel, "QuerySupplier"));
+        add(backUpdateButton, gbc);
+
         // 返回菜单按钮
-        gbc.gridy = 3;
-        gbc.gridx = 1;
+        gbc.gridx = 2;
         JButton backButton = new JButton("返回菜单");
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Menu"));
         add(backButton, gbc);

@@ -42,9 +42,23 @@ public class QuerySalesPanel extends JPanel {
         Font font = new Font(null, Font.PLAIN, 15);
         UIUtils.setFont(font, foodSalesNumberTextField, foodNumberTextField, staffNumberTextField);
 
+        // 查询所有
+        gbc.gridy = 3;
+        JButton searchAllButton = new JButton("查询所有销售记录");
+        searchAllButton.addActionListener(e -> {
+            try {
+                SalesImpl sales = new SalesImpl();
+                displayResults(sales.selectAllSales());
+            } catch (RuntimeException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(QuerySalesPanel.this, "查询失败: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        add(searchAllButton, gbc);
+
         // 添加查询按钮
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -67,7 +81,7 @@ public class QuerySalesPanel extends JPanel {
         add(searchButton, gbc);
 
         // 添加跳转到更新界面的按钮
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -76,13 +90,13 @@ public class QuerySalesPanel extends JPanel {
         add(updateButton, gbc);
 
         // 添加跳转到删除界面的按钮
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         JButton deleteButton = new JButton("删除销售记录(请记住编号)");
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteSales"));
         add(deleteButton, gbc);
 
         // 添加清除数据按钮
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         JButton clearButton = new JButton("清除数据");
         clearButton.addActionListener(e -> {
             // 清除所有文本框的数据
@@ -93,7 +107,7 @@ public class QuerySalesPanel extends JPanel {
         add(clearButton, gbc);
 
         // 添加查询结果显示区域
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 0.5;
@@ -104,7 +118,7 @@ public class QuerySalesPanel extends JPanel {
         add(scrollPane, gbc);
 
         // 添加返回主菜单按钮
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
@@ -155,6 +169,19 @@ public class QuerySalesPanel extends JPanel {
         } catch (RuntimeException err) {
             err.printStackTrace();
             JOptionPane.showMessageDialog(QuerySalesPanel.this, "查询失败: " + err.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //查询所有返回结果集
+    private void displayResults(List<SalesDO> results) {
+        if (!results.isEmpty()) {
+            StringBuilder resultText = new StringBuilder();
+            for (SalesDO result : results) {
+                resultText.append(result.toChineseString()).append("\n\n");
+            }
+            resultArea.setText(resultText.toString());
+        } else {
+            JOptionPane.showMessageDialog(QuerySalesPanel.this, "查询结果为空", "错误", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

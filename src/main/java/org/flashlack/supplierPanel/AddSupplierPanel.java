@@ -42,12 +42,22 @@ public class AddSupplierPanel extends JPanel {
             supplierDO.setSupplierName(supplierNameField.getText());
             supplierDO.setSupplierPhone(supplierPhoneField.getText());
             SupplierImpl supplier = new SupplierImpl();
+            //检查编号
+            try{
+                if (supplier.selectSupplier(supplierDO)!=null){
+                    JOptionPane.showMessageDialog(AddSupplierPanel.this, "编号重复", "消息", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }catch (RuntimeException err){
+                JOptionPane.showMessageDialog(AddSupplierPanel.this, "系统内部错误"
+                        + err.getMessage(), "失败", JOptionPane.ERROR_MESSAGE);
+            }
             try {
                 supplier.insertSupplier(supplierDO);
                 JOptionPane.showMessageDialog(AddSupplierPanel.this, "添加成功", "消息", JOptionPane.INFORMATION_MESSAGE);
             } catch (RuntimeException err) {
                 err.printStackTrace();
-                JOptionPane.showMessageDialog(AddSupplierPanel.this, "添加失败,可能为编号重复"+err.getMessage(), "消息", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(AddSupplierPanel.this, "系统内部错误"+err.getMessage(), "消息", JOptionPane.ERROR_MESSAGE);
             }
         });
         add(finishButton, gbc);

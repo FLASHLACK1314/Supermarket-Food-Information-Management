@@ -33,7 +33,7 @@ public class AddInventoryPanel extends JPanel {
         foodCategoryField = UIUtils.addLabeledTextField(this, gbc, "食品类别:", 2);
         foodPriceField = UIUtils.addLabeledTextField(this, gbc, "食品进价:", 3);
         stockQuantityField = UIUtils.addLabeledTextField(this, gbc, "库存数量:", 4);
-        supplierNumberField = UIUtils.addLabeledTextField(this, gbc, "供应商名称:", 5);
+        supplierNumberField = UIUtils.addLabeledTextField(this, gbc, "供应商编号:", 5);
 
         // 增加字体宽度
         Font font = new Font(null, Font.PLAIN, 15);
@@ -60,6 +60,16 @@ public class AddInventoryPanel extends JPanel {
             SupplierDO supplierDO = new SupplierDO();
             SupplierImpl supplier = new SupplierImpl();
             supplierDO.setSupplierNumber(foodDO.getSupplierNumber());
+            //检查编号
+            try{
+                if (foodInventory.getFoodDO(foodDO)!=null){
+                    JOptionPane.showMessageDialog(AddInventoryPanel.this, "编号重复", "消息", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }catch (RuntimeException err){
+                JOptionPane.showMessageDialog(AddInventoryPanel.this, "系统内部错误"
+                        + err.getMessage(), "失败", JOptionPane.ERROR_MESSAGE);
+            }
             try {
                 if (supplier.selectSupplier(supplierDO)!=null) {
                     try {

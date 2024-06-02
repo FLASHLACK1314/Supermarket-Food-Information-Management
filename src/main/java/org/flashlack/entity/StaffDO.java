@@ -26,6 +26,6 @@ public class StaffDO {
         return "员工编号: " + staffNumber + "\n" +
                 "员工姓名: " + staffName + "\n" +
                 "员工性别: " + staffSex + "\n" +
-                "员工电话: " + staffPhone;
+                "员工联系方式: " + staffPhone;
     }
 }

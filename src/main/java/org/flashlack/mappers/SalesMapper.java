@@ -29,4 +29,6 @@ public interface SalesMapper {
     List<SalesDO> selectSalesListByStaff(SalesDO salesDO);
     @Delete("DELETE food_sales ")
     Boolean deleteAllSales();
+    @Select("SELECT * FROM food_sales")
+    List<SalesDO> selectAllSales();
 }

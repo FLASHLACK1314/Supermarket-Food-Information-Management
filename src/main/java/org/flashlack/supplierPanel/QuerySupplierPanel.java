@@ -35,9 +35,24 @@ public class QuerySupplierPanel extends JPanel {
         // 增加字体宽度
         Font font = new Font(null, Font.PLAIN, 15);
         UIUtils.setFont(font, supplierNumberTextField, supplierNameTextField);
+
+        // 查询所有
+        gbc.gridy = 3;
+        JButton searchAllButton = new JButton("查询所有供应商");
+        searchAllButton.addActionListener(e -> {
+            try {
+                SupplierImpl supplier = new SupplierImpl();
+                displayResults(supplier.selectAll());
+            } catch (RuntimeException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(QuerySupplierPanel.this, "查询失败: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        add(searchAllButton, gbc);
+
         // 添加查询按钮
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -56,7 +71,7 @@ public class QuerySupplierPanel extends JPanel {
         });
         add(searchButton, gbc);
         // 添加跳转到更新界面的按钮
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -65,13 +80,13 @@ public class QuerySupplierPanel extends JPanel {
         add(updateButton, gbc);
 
         // 添加跳转到删除界面的按钮
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         JButton deleteButton = new JButton("删除供应商(请记住编号)");
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteSupplier"));
         add(deleteButton, gbc);
 
         // 添加清除数据按钮
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         JButton clearButton = new JButton("清除数据");
         clearButton.addActionListener(e -> {
             // 清除所有文本框的数据
@@ -81,7 +96,7 @@ public class QuerySupplierPanel extends JPanel {
         add(clearButton, gbc);
 
         // 添加查询结果显示区域
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 0.5;
@@ -92,7 +107,7 @@ public class QuerySupplierPanel extends JPanel {
         add(scrollPane, gbc);
 
         // 添加返回主菜单按钮
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
@@ -144,5 +159,16 @@ public class QuerySupplierPanel extends JPanel {
         }
     }
 
+    private void displayResults(List<SupplierDO> results) {
+        if (!results.isEmpty()) {
+            StringBuilder resultText = new StringBuilder();
+            for (SupplierDO result : results) {
+                resultText.append(result.toChineseString()).append("\n\n");
+            }
+            resultArea.setText(resultText.toString());
+        } else {
+            JOptionPane.showMessageDialog(QuerySupplierPanel.this, "查询结果为空", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 }

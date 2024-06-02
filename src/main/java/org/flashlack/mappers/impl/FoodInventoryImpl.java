@@ -130,11 +130,27 @@ public class FoodInventoryImpl implements FoodInventoryMapper {
         }
     }
 
+    /**
+     * 清空表
+     * @return 成功
+     */
     @Override
     public boolean deleteAllFoodInventory() {
         try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
             return mapper.deleteAllFoodInventory();
+        }
+    }
+
+    /**
+     * 查询所有
+     * @return 链表
+     */
+    @Override
+    public List<FoodDO> foodInventoryFindAll() {
+        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            FoodInventoryMapper mapper = sqlSession.getMapper(FoodInventoryMapper.class);
+            return mapper.foodInventoryFindAll();
         }
     }
 }

@@ -112,11 +112,27 @@ public class SalesImpl implements SalesMapper {
         }
     }
 
+    /**
+     * 清空表
+     * @return 成功
+     */
     @Override
     public Boolean deleteAllSales() {
         try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
             SalesMapper mapper = sqlSession.getMapper(SalesMapper.class);
             return mapper.deleteAllSales();
+        }
+    }
+
+    /**
+     * 查询所有
+     * @return 链表
+     */
+    @Override
+    public List<SalesDO> selectAllSales() {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            SalesMapper mapper = sqlSession.getMapper(SalesMapper.class);
+            return mapper.selectAllSales();
         }
     }
 }

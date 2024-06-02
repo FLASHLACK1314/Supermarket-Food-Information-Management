@@ -94,5 +94,17 @@ public class SupplierImpl implements SupplierMapper {
             return mapper.selectSupplierByName(supplierDO);
         }
     }
+
+    /**
+     * 查询所有
+     * @return 链表
+     */
+    @Override
+    public List<SupplierDO> selectAll() {
+        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            SupplierMapper mapper = sqlSession.getMapper(SupplierMapper.class);
+            return mapper.selectAll();
+        }
+    }
 }
 

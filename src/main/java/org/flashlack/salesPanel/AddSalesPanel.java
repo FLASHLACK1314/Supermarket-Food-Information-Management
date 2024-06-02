@@ -57,6 +57,16 @@ public class AddSalesPanel extends JPanel {
             SalesImpl sales = new SalesImpl();
             FoodInventoryImpl foodInventory = new FoodInventoryImpl();
             StaffImpl staff = new StaffImpl();
+            //检查编号
+            try{
+                if (sales.selectSalesByNumber(salesDO)!=null){
+                    JOptionPane.showMessageDialog(AddSalesPanel.this, "编号重复", "消息", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }catch (RuntimeException err){
+                JOptionPane.showMessageDialog(AddSalesPanel.this, "系统内部错误"
+                        + err.getMessage(), "失败", JOptionPane.ERROR_MESSAGE);
+            }
             //首先检查食品编号是否存在
             foodDO.setFoodNumber(salesDO.getFoodNumber());
             System.out.println(foodDO.getFoodNumber());

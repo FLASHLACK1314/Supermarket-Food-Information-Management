@@ -11,6 +11,7 @@ import java.util.function.Function;
 
 /**
  * 查询员工类界面
+ *
  * @author FLASHLACK
  */
 public class QueryStaffPanel extends JPanel {
@@ -40,9 +41,23 @@ public class QueryStaffPanel extends JPanel {
         Font font = new Font(null, Font.PLAIN, 15);
         UIUtils.setFont(font, staffNumberTextField, staffNameTextField, staffSexTextField);
 
+        // 查询所有
+        gbc.gridy = 3;
+        JButton searchAllButton = new JButton("查询所有员工");
+        searchAllButton.addActionListener(e -> {
+            try {
+                StaffImpl staff = new StaffImpl();
+                displayResults(staff.selectAllStaff());
+            } catch (RuntimeException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(QueryStaffPanel.this, "查询失败: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        add(searchAllButton, gbc);
+
         // 添加查询按钮
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -65,19 +80,19 @@ public class QueryStaffPanel extends JPanel {
         add(searchButton, gbc);
 
         // 添加跳转到更新界面的按钮
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         JButton updateButton = new JButton("更新员工(请记住编号)");
         updateButton.addActionListener(e -> cardLayout.show(mainPanel, "UpdateStaff"));
         add(updateButton, gbc);
 
         // 添加跳转到删除界面的按钮
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         JButton deleteButton = new JButton("删除员工(请记住编号)");
         deleteButton.addActionListener(e -> cardLayout.show(mainPanel, "DeleteStaff"));
         add(deleteButton, gbc);
 
         // 添加清除数据按钮
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         JButton clearButton = new JButton("清除数据");
         clearButton.addActionListener(e -> {
             // 清除所有文本框的数据
@@ -88,7 +103,7 @@ public class QueryStaffPanel extends JPanel {
         add(clearButton, gbc);
 
         // 添加查询结果显示区域
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 0.5;
@@ -99,7 +114,7 @@ public class QueryStaffPanel extends JPanel {
         add(scrollPane, gbc);
 
         // 添加返回主菜单按钮
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
@@ -122,8 +137,8 @@ public class QueryStaffPanel extends JPanel {
 
     // 确保只能填写一个
     private void toggleTextFields(JCheckBox selectedCheckBox) {
-        JCheckBox[] checkboxes = {staffNumberCheckBox, staffNameCheckBox,staffSexCheckBox};
-        JTextField[] fields = {staffNumberTextField, staffNameTextField,staffSexTextField};
+        JCheckBox[] checkboxes = {staffNumberCheckBox, staffNameCheckBox, staffSexCheckBox};
+        JTextField[] fields = {staffNumberTextField, staffNameTextField, staffSexTextField};
         for (int i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i] != selectedCheckBox) {
                 checkboxes[i].setSelected(false);
@@ -134,6 +149,7 @@ public class QueryStaffPanel extends JPanel {
             }
         }
     }
+
     //查询通用方法返回结果集
     private void performQuery(Function<StaffDO, java.util.List<StaffDO>> queryFunction, StaffDO staffDO) {
         try {
@@ -150,6 +166,18 @@ public class QueryStaffPanel extends JPanel {
         } catch (RuntimeException err) {
             err.printStackTrace();
             JOptionPane.showMessageDialog(QueryStaffPanel.this, "查询失败: " + err.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void displayResults(List<StaffDO> results) {
+        if (!results.isEmpty()) {
+            StringBuilder resultText = new StringBuilder();
+            for (StaffDO result : results) {
+                resultText.append(result.toChineseString()).append("\n\n");
+            }
+            resultArea.setText(resultText.toString());
+        } else {
+            JOptionPane.showMessageDialog(QueryStaffPanel.this, "查询结果为空", "错误", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

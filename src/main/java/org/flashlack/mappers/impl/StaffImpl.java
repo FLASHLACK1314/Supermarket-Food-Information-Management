@@ -118,4 +118,16 @@ public class StaffImpl implements StaffMapper {
             return mapper.deleteStaff();
         }
     }
+
+    /**
+     * 查询所有
+     * @return 链表
+     */
+    @Override
+    public List<StaffDO> selectAllStaff() {
+        try(SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            StaffMapper mapper = sqlSession.getMapper(StaffMapper.class);
+            return mapper.selectAllStaff();
+        }
+    }
 }
