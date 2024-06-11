@@ -15,6 +15,7 @@ import java.awt.*;
  */
 public class Main {
     public static void main(String[] args) {
+        Config config = new Config();
         // 创建窗口名称
         JFrame frame = new JFrame("超市食品信息管理系统");
         // 获取屏幕尺寸

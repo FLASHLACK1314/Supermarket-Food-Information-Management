@@ -16,4 +16,12 @@ public class UserImpl implements UserMappper {
             return mapper.loginSelect(userDO);
         }
     }
+
+    @Override
+    public void insert(UserDO userDO) {
+        try (SqlSession sqlSession = MybatisUtil.getSqlSession()) {
+            UserMappper mapper = sqlSession.getMapper(UserMappper.class);
+            mapper.insert(userDO);
+        }
+    }
 }
