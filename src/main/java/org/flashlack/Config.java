@@ -22,12 +22,12 @@ public class Config {
                 try {
                     user.insert(userDO);
                 }catch (RuntimeException e){
-                    JOptionPane.showMessageDialog(null, userDO.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, userDO.toString(), "Error2", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }catch (RuntimeException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, userDO.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, userDO.toString(), "Error1", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
